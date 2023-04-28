@@ -23,6 +23,65 @@ class program
             switch (val)
             {
                 case "1":
+                    int dator = 0;
+                    int spelare = 0;
+                    Console.WriteLine("Nu kommer två kort att dras per spelare");
+                    for (int i = 0; i < 2; i++)
+                    {
+                        dator += slump.Next(1,11);
+                        spelare += slump.Next(1,11);
+                    }
+
+                    string kort = "";
+                    while (kort != "n" && spelare <= 21)
+                    {
+                        Console.WriteLine($"Din total poäng är {spelare}");
+                        Console.WriteLine($"Datorns total poäng är {dator}");
+                        Console.WriteLine("Vill du ha en till kort? j/n");
+                        kort = Console.ReadLine();
+                        if (kort == "j")
+                        {
+                            int Sny = slump.Next(1,11);
+                            spelare += Sny;
+                            Console.WriteLine($"Din nya kort är {Sny} poäng");
+                        }
+                        else if (kort == "n")
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Du valde inte ett giltigt alternativ!");
+                        }
+                    }
+                    if (spelare > 21)
+                    {
+                        Console.WriteLine($"Din total poäng är {spelare}");
+                        Console.WriteLine("Du har över 21 total poäng du har förlurat");
+                        Console.ReadKey();
+                    }
+                    else
+                    {
+                        while (dator < spelare && dator <= 21)
+                        {
+                            int Dny = slump.Next(1, 11);
+                            dator += Dny;
+                            Console.WriteLine($"Datorn drog ett kort och är {Dny}");
+                            Console.WriteLine($"Datorns total poäng är {dator}");
+                        }
+
+                        if (dator > 21)
+                        {
+                            Console.Write("\nDu har vunnit \nSkriv in ditt namn: ");
+                            senast = Console.ReadLine();
+                        }
+                        else if ( dator <= 21 && dator > spelare)
+                        {
+                            Console.WriteLine($"Din total poäng är {spelare}\n");
+                            Console.WriteLine("Du har förlurat \nDatorn har mer poäng än dig");
+                            Console.ReadKey();
+                        }
+                    }
                     break;
                 case "2":
                     Console.WriteLine($"Senaste vinnare: {senast}");
