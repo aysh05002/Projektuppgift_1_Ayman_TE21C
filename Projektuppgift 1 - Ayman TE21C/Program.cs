@@ -75,10 +75,10 @@ class program
                             Console.Write("\nDu har vunnit \nSkriv in ditt namn: ");
                             senast = Console.ReadLine();
                         }
-                        else if ( dator <= 21 && dator > spelare)
+                        else if ( dator <= 21 && dator >= spelare)
                         {
                             Console.WriteLine($"Din total poäng är {spelare}\n");
-                            Console.WriteLine("Du har förlurat \nDatorn har mer poäng än dig");
+                            Console.WriteLine("Du har förlurat \nDatorn har lika/mer poäng än dig");
                             Console.ReadKey();
                         }
                     }
@@ -92,7 +92,7 @@ class program
                         "\nDu får poäng genom att dra ett kort som har värdet mellan 1 och 10." +
                         "\nOm du får mer än 21 poäng har du förlorat. \nBåde du och datorn får två kort i början." +
                         "\nDärefter får du dra fler kort tills du är nöjd eller får över 21 poäng." +
-                        "\nNär du är färdig drar datorn kort tills den har mer poäng än dig eller över 21 poäng.");
+                        "\nNär du är färdig drar datorn kort tills den har lika/mer poäng än dig eller över 21 poäng.");
                     Console.ReadKey();
                     break;
                 case "4":
