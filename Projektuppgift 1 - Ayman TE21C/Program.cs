@@ -4,9 +4,12 @@ class program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Välkommen till 21:an!");
+        int maxpoäng = 21;
+        Console.WriteLine($"Välkommen till {maxpoäng}:an!");
 
         Random slump = new Random();
+        int minkort = 1;
+        int maxkort = 11;
         string senast = "Ingen har vunnit än";
         string val = "0";
         while (val != "4")
@@ -28,12 +31,12 @@ class program
                     Console.WriteLine("Nu kommer två kort att dras per spelare");
                     for (int i = 0; i < 2; i++)
                     {
-                        dator += slump.Next(1,11);
-                        spelare += slump.Next(1,11);
+                        dator += slump.Next(minkort, maxkort);
+                        spelare += slump.Next(minkort, maxkort);
                     }
 
                     string kort = "";
-                    while (kort != "n" && spelare <= 21)
+                    while (kort != "n" && spelare <= maxpoäng)
                     {
                         Console.WriteLine($"Din total poäng är {spelare}");
                         Console.WriteLine($"Datorns total poäng är {dator}");
@@ -41,7 +44,7 @@ class program
                         kort = Console.ReadLine();
                         if (kort == "j")
                         {
-                            int Sny = slump.Next(1,11);
+                            int Sny = slump.Next(minkort, maxkort);
                             spelare += Sny;
                             Console.WriteLine($"Din nya kort är {Sny} poäng");
                         }
@@ -54,7 +57,7 @@ class program
                             Console.WriteLine("Du valde inte ett giltigt alternativ!");
                         }
                     }
-                    if (spelare > 21)
+                    if (spelare > maxpoäng)
                     {
                         Console.WriteLine($"Din total poäng är {spelare}");
                         Console.WriteLine("Du har över 21 total poäng du har förlurat");
@@ -62,20 +65,20 @@ class program
                     }
                     else
                     {
-                        while (dator < spelare && dator <= 21)
+                        while (dator < spelare && dator <= maxpoäng)
                         {
-                            int Dny = slump.Next(1, 11);
+                            int Dny = slump.Next(minkort, maxkort);
                             dator += Dny;
                             Console.WriteLine($"Datorn drog ett kort och är {Dny}");
                             Console.WriteLine($"Datorns total poäng är {dator}");
                         }
 
-                        if (dator > 21)
+                        if (dator > maxpoäng)
                         {
                             Console.Write("\nDu har vunnit \nSkriv in ditt namn: ");
                             senast = Console.ReadLine();
                         }
-                        else if ( dator <= 21 && dator >= spelare)
+                        else if ( dator <= maxpoäng && dator >= spelare)
                         {
                             Console.WriteLine($"Din total poäng är {spelare}\n");
                             Console.WriteLine("Du har förlurat \nDatorn har lika/mer poäng än dig");
@@ -88,11 +91,11 @@ class program
                     Console.ReadKey();
                     break;
                 case "3":
-                    Console.WriteLine("Ditt mål är att tvinga datorn att få mer 21 poäng." +
-                        "\nDu får poäng genom att dra ett kort som har värdet mellan 1 och 10." +
-                        "\nOm du får mer än 21 poäng har du förlorat. \nBåde du och datorn får två kort i början." +
-                        "\nDärefter får du dra fler kort tills du är nöjd eller får över 21 poäng." +
-                        "\nNär du är färdig drar datorn kort tills den har lika/mer poäng än dig eller över 21 poäng.");
+                    Console.WriteLine($"Ditt mål är att tvinga datorn att få mer {maxpoäng} poäng." +
+                        $"\nDu får poäng genom att dra ett kort som har värdet mellan {minkort} och {maxkort-1}." +
+                        $"\nOm du får mer än {maxpoäng} poäng har du förlorat. \nBåde du och datorn får två kort i början." +
+                        $"\nDärefter får du dra fler kort tills du är nöjd eller får över {maxpoäng} poäng." +
+                        $"\nNär du är färdig drar datorn kort tills den har lika/mer poäng än dig eller över {maxpoäng} poäng.");
                     Console.ReadKey();
                     break;
                 case "4":
